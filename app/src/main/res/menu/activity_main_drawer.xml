@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_task_list"
+            android:icon="@drawable/ic_menu_task"
+            android:title="@string/menu_task" />
+        <item
+            android:id="@+id/nav_rickmorty"
+            android:icon="@drawable/ic_menu_rickmorty"
+            android:title="@string/menu_rickmorty" />
+    </group>
+</menu>

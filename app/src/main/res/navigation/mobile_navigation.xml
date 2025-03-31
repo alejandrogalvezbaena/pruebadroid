@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_task_list">
+
+    <fragment
+        android:id="@+id/nav_task_list"
+        android:name="com.example.pruebadroid.ui.task.list.TaskListFragment"
+        android:label="@string/label_task_list"
+        tools:layout="@layout/fragment_task_list" >
+        <action
+            android:id="@+id/action_nav_task_list_to_nav_task_detail"
+            app:destination="@id/nav_task_detail" />
+        <action
+            android:id="@+id/action_nav_task_list_to_nav_filter_task_dialog"
+            app:destination="@id/nav_filter_task_dialog" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_filter_task_dialog"
+        android:name="com.example.pruebadroid.ui.task.list.FilterTaskDialogFragment"
+        android:label="@string/label_task_filter"
+        tools:layout="@layout/fragment_filters_task_dialog" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_task_detail"
+        android:name="com.example.pruebadroid.ui.task.detail.TaskDetailFragment"
+        android:label="@string/label_task_detail"
+        tools:layout="@layout/fragment_task_detail" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_rickmorty"
+        android:name="com.example.pruebadroid.ui.rickmorty.list.RickMortyListFragment"
+        android:label="@string/label_rickmorty"
+        tools:layout="@layout/fragment_rickmorty_list" >
+        <action
+            android:id="@+id/action_nav_rickmorty_to_nav_task_list"
+            app:destination="@id/nav_task_list"/>
+        <action
+            android:id="@+id/action_nav_rickmorty_to_nav_rickmorty_favorites"
+            app:destination="@id/nav_rickmorty_favorites"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_rickmorty_favorites"
+        android:name="com.example.pruebadroid.ui.rickmorty.favorites.RickMortyFavoritesFragment"
+        android:label="@string/label_rickmorty_favorites"
+        tools:layout="@layout/fragment_rick_morty_favorites" >
+        <action
+            android:id="@+id/action_nav_rickmorty_favorites_to_nav_rickmorty"
+            app:destination="@id/nav_rickmorty" />
+    </fragment>
+
+</navigation>

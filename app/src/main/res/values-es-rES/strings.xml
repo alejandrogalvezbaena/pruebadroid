@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PRUEBADROID</string>
+    <string name="nav_header_title">PRUEBADROID</string>
+    <string name="nav_header_subtitle">Aplicación de gestion de tareas y Rick Morty</string>
+    <string name="action_menu_favorites">Ajustes</string>
+
+    <string name="menu_task">Tareas</string>
+    <string name="menu_rickmorty">Rick Morty</string>
+</resources>

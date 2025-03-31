@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">PRUEBADROID</string>
+    <string name="nav_header_title">PRUEBADROID</string>
+    <string name="nav_header_subtitle">Task manager and RickMorty app</string>
+    <string name="action_menu_favorites">Favorites</string>
+    <string name="action_menu_add_new_task">Add New Task</string>
+    <string name="action_menu_filter_task">Filters</string>
+
+    <string name="menu_task">Tasks</string>
+    <string name="label_task_list">Task List</string>
+    <string name="label_task_detail">Task Detail</string>
+    <string name="label_task_filter">Filters</string>
+    <string name="menu_rickmorty">Rick Morty</string>
+    <string name="label_rickmorty">Rick Morty</string>
+    <string name="label_rickmorty_favorites">Rick Morty Favorites</string>
+    <string name="task_detail_title_hint">Title</string>
+    <string name="task_detail_description_hint">Description</string>
+    <string name="task_detail_date_hint">Date</string>
+    <string name="task_detail_state_hint">State</string>
+    <string name="task_detail_save_button">Save</string>
+    <string name="task_detail_state_completed">STATE: COMPLETED</string>
+    <string name="task_detail_state_pending">STATE: PENDING</string>
+    <string name="context_menu_rickmorty_favorite">Mark as favorite</string>
+    <string name="context_menu_rickmorty_no_favorite">Unmark as favorite</string>
+    <string name="context_menu_task_completed">Mark as completed</string>
+    <string name="context_menu_task_deleted">Delete</string>
+    <string name="rickmorty_list_info_page">Page %s of %s</string>
+    <string name="rickmorty_list_prev_button">Previous</string>
+    <string name="rickmorty_list_next_button">Next</string>
+    <string name="rickmorty_list_nodata_text">Online data is not accessible. You can only view saved favorites list.</string>
+    <string name="rickmorty_list_nodata_button">Favorites</string>
+    <string name="task_list_nodata_text">List is empty. You can only add new task.</string>
+    <string name="task_list_nodata_button">Add New Task</string>
+    <string name="filters_task_dialog_all_radiobtn">All</string>
+    <string name="filters_task_dialog_pending_radiobtn">Pending</string>
+    <string name="filters_task_dialog_completed_radiobtn">Completed</string>
+    <string name="filters_task_dialog_title">Select Filter</string>
+    <string name="filters_task_dialog_cancel_button">Cancel</string>
+    <string name="filters_task_dialog_ok_button">OK</string>
+</resources>

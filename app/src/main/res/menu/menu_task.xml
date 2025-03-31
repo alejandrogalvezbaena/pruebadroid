@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_add_new_task"
+        app:showAsAction="ifRoom"
+        android:title="@string/action_menu_add_new_task"
+        android:icon="@drawable/ic_add_new_task"/>
+    <item
+        android:id="@+id/action_filter_task"
+        app:showAsAction="ifRoom"
+        android:title="@string/action_menu_filter_task"
+        android:icon="@drawable/ic_filter_task"/>
+</menu>
