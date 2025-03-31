@@ -1,10 +1,10 @@
 package com.example.pruebadroid.ui.rickmorty.favorites
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pruebadroid.databinding.FragmentRickMortyFavoritesBinding
@@ -34,16 +34,19 @@ class RickMortyFavoritesFragment : Fragment(), RickMortyListAdapter.OnRickMortyL
         initObservables()
     }
 
-    private fun initAdapter(){
+    private fun initAdapter() {
         rickMortyAdapter = RickMortyListAdapter(this)
         binding.recyclerRickMortyFavoritesList.layoutManager = LinearLayoutManager(context)
         binding.recyclerRickMortyFavoritesList.adapter = rickMortyAdapter
     }
 
-    private fun initObservables(){
+    private fun initObservables() {
         rickMortyViewModel.characterFavoriteListLiveData.observe(viewLifecycleOwner) {
+            binding.textNoDataRickMortyFavoriteList.visibility =
+                if (it.isNullOrEmpty()) View.VISIBLE else View.GONE
             rickMortyAdapter.updateDataList(it, rickMortyViewModel.characterFavoriteIDList)
             binding.recyclerRickMortyFavoritesList.scrollToPosition(0)
+
         }
     }
 

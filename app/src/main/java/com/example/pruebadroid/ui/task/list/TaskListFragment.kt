@@ -60,9 +60,10 @@ class TaskListFragment : Fragment(), TaskListAdapter.OnTaskListener {
                     }
 
                     R.id.action_filter_task -> {
-                        val dialog = FilterTaskDialogFragment(taskViewModel.filterID) { selectedFilter ->
-                            taskViewModel.applyFilter(selectedFilter)
-                        }
+                        val dialog =
+                            FilterTaskDialogFragment(taskViewModel.filterID) { selectedFilter ->
+                                taskViewModel.applyFilter(selectedFilter)
+                            }
                         dialog.show(parentFragmentManager, "FilterDialog")
                         true
                     }

@@ -42,28 +42,32 @@
 
             <Button
                 android:id="@+id/btnPreviousRickMortyList"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="16dp"
                 android:layout_weight="1"
-                android:layout_marginHorizontal="32dp"
-                android:text="@string/rickmorty_list_prev_button" />
+                android:text="@string/rickmorty_list_prev_button"
+                android:theme="@style/ButtonStyle" />
 
             <Button
                 android:id="@+id/btnNextRickMortyList"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="32dp"
                 android:layout_weight="1"
-                android:layout_marginHorizontal="32dp"
-                android:text="@string/rickmorty_list_next_button" />
+                android:text="@string/rickmorty_list_next_button"
+                android:theme="@style/ButtonStyle" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintNoDataRickMortyList"
+        style="@style/ConstraintStyle"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/white">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/textNoDataRickMortyList"
@@ -83,6 +87,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/rickmorty_list_nodata_button"
+            android:theme="@style/ButtonStyle"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

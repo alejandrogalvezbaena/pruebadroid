@@ -16,8 +16,8 @@ class RickMortyViewModel(application: Application) : AndroidViewModel(applicatio
     private val _characterList = MutableLiveData<ArrayList<Character>>()
     val characterListLiveData: LiveData<ArrayList<Character>> = _characterList
 
-    private val _pageInfo = MutableLiveData<Pair<String, String>>()
-    val pageInfoLiveData: LiveData<Pair<String, String>> get() = _pageInfo
+    private val _pageInfo = MutableLiveData<Pair<String, String>?>()
+    val pageInfoLiveData: LiveData<Pair<String, String>?> get() = _pageInfo
 
     private val _characterFavoriteList = MutableLiveData<ArrayList<Character>>()
     val characterFavoriteListLiveData: LiveData<ArrayList<Character>> = _characterFavoriteList
@@ -43,35 +43,41 @@ class RickMortyViewModel(application: Application) : AndroidViewModel(applicatio
                 if (response.isSuccessful && response.body() != null) {
                     characterListResult = response.body()!!
                     _characterList.postValue(characterListResult.results)
-                    _pageInfo.postValue(Pair(page.toString(),
-                        characterListResult.info.pages))
+                    _pageInfo.postValue(
+                        Pair(
+                            page.toString(),
+                            characterListResult.info.pages
+                        )
+                    )
                 } else {
-                    resetCharacterList()
+                    resetViewModel()
                 }
             } catch (e: Exception) {
-                resetCharacterList()
+                resetViewModel()
             }
         }
     }
 
-    fun loadPreviousPage(){
+    fun loadPreviousPage() {
         characterListResult.let {
-            val page: Int = characterListResult.info?.prev?.substringAfterLast("=")?.toIntOrNull() ?: 1
-            page.let {this.loadCharacterList(page)}
+            val page: Int =
+                characterListResult.info?.prev?.substringAfterLast("=")?.toIntOrNull() ?: 1
+            page.let { this.loadCharacterList(page) }
         }
     }
 
-    fun loadNextPage(){
+    fun loadNextPage() {
         characterListResult.let {
-            val page: Int = characterListResult.info?.next?.substringAfterLast("=")?.toIntOrNull() ?: characterListResult.info.pages.toInt()
-            page.let {this.loadCharacterList(page)}
+            val page: Int = characterListResult.info?.next?.substringAfterLast("=")?.toIntOrNull()
+                ?: characterListResult.info.pages.toInt()
+            page.let { this.loadCharacterList(page) }
         }
     }
 
     fun markAsFavorite(id: Int) {
         val characterFavoriteListNew = _characterFavoriteList.value
         val characterFavorite = _characterList.value?.find { it.id == id }
-        if (characterFavoriteListNew != null && characterFavorite != null){
+        if (characterFavoriteListNew != null && characterFavorite != null) {
             characterFavoriteListNew.add(characterFavorite)
             SharedPreferencesUtils.saveRickMortyList(getApplication(), characterFavoriteListNew)
             loadCharacterFavoriteList()
@@ -82,7 +88,7 @@ class RickMortyViewModel(application: Application) : AndroidViewModel(applicatio
     fun unMarkAsFavorite(id: Int) {
         val characterFavoriteListNew = _characterFavoriteList.value
         val characterFavorite = characterFavoriteListNew?.find { it.id == id }
-        if (characterFavoriteListNew != null && characterFavorite != null){
+        if (characterFavoriteListNew != null && characterFavorite != null) {
             characterFavoriteListNew.remove(characterFavorite)
             SharedPreferencesUtils.saveRickMortyList(getApplication(), characterFavoriteListNew)
             loadCharacterFavoriteList()
@@ -90,7 +96,8 @@ class RickMortyViewModel(application: Application) : AndroidViewModel(applicatio
         }
     }
 
-    fun resetCharacterList(){
+    fun resetViewModel() {
         _characterList.postValue(ArrayList())
+        _pageInfo.postValue(null)
     }
 }

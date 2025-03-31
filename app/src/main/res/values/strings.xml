@@ -1,16 +1,16 @@
 <resources>
     <string name="app_name">PRUEBADROID</string>
     <string name="nav_header_title">PRUEBADROID</string>
-    <string name="nav_header_subtitle">Task manager and RickMorty app</string>
+    <string name="nav_header_subtitle">Task manager and Rick Morty app</string>
     <string name="action_menu_favorites">Favorites</string>
     <string name="action_menu_add_new_task">Add New Task</string>
     <string name="action_menu_filter_task">Filters</string>
-
     <string name="menu_task">Tasks</string>
     <string name="label_task_list">Task List</string>
     <string name="label_task_detail">Task Detail</string>
     <string name="label_task_filter">Filters</string>
     <string name="menu_rickmorty">Rick Morty</string>
+    <string name="menu_darkMode">Dark Mode</string>
     <string name="label_rickmorty">Rick Morty</string>
     <string name="label_rickmorty_favorites">Rick Morty Favorites</string>
     <string name="task_detail_title_hint">Title</string>
@@ -28,6 +28,7 @@
     <string name="rickmorty_list_prev_button">Previous</string>
     <string name="rickmorty_list_next_button">Next</string>
     <string name="rickmorty_list_nodata_text">Online data is not accessible. You can only view saved favorites list.</string>
+    <string name="rickmorty_favorite_list_nodata_text">No favorites yet</string>
     <string name="rickmorty_list_nodata_button">Favorites</string>
     <string name="task_list_nodata_text">List is empty. You can only add new task.</string>
     <string name="task_list_nodata_button">Add New Task</string>
@@ -37,4 +38,6 @@
     <string name="filters_task_dialog_title">Select Filter</string>
     <string name="filters_task_dialog_cancel_button">Cancel</string>
     <string name="filters_task_dialog_ok_button">OK</string>
+    <string name="task_detail_dialog_error_title">Warning</string>
+    <string name="task_detail_dialog_error_message">All fields must bee filled to continue</string>
 </resources>

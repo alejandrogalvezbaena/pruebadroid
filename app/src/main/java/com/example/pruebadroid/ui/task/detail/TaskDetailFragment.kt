@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -46,11 +47,11 @@ class TaskDetailFragment : Fragment() {
         initObservables()
     }
 
-    private fun initArguments(){
+    private fun initArguments() {
         taskId = arguments?.getString(Globals.ARGUMENT_TASK_ID) ?: ""
     }
 
-    private fun initViews(){
+    private fun initViews() {
         val options = resources.getStringArray(R.array.task_status_options).toList()
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, options)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -62,23 +63,43 @@ class TaskDetailFragment : Fragment() {
             showDatePickerDialog(binding.editDateTaskDetail)
         }
         binding.btnSaveTaskDetail.setOnClickListener {
-            if (taskId.isEmpty()){
-                taskViewModel.createTask(
-                    binding.editTitleTaskDetail.text.toString(),
-                    binding.editDescriptionTaskDetail.text.toString(),
-                    binding.editDateTaskDetail.text.toString(),
-                    binding.spinnerStateTaskDetail.selectedItemPosition.toString()
+            if (validateFields(
+                    binding.editTitleTaskDetail, binding.editDescriptionTaskDetail,
+                    binding.editDateTaskDetail
                 )
-            } else {
-                taskViewModel.editTask(
-                    taskId,
-                    binding.editTitleTaskDetail.text.toString(),
-                    binding.editDescriptionTaskDetail.text.toString(),
-                    binding.editDateTaskDetail.text.toString(),
-                    binding.spinnerStateTaskDetail.selectedItemPosition.toString()
-                )
+            ) {
+                if (taskId.isEmpty()) {
+                    taskViewModel.createTask(
+                        binding.editTitleTaskDetail.text.toString(),
+                        binding.editDescriptionTaskDetail.text.toString(),
+                        binding.editDateTaskDetail.text.toString(),
+                        binding.spinnerStateTaskDetail.selectedItemPosition.toString()
+                    )
+                } else {
+                    taskViewModel.editTask(
+                        taskId,
+                        binding.editTitleTaskDetail.text.toString(),
+                        binding.editDescriptionTaskDetail.text.toString(),
+                        binding.editDateTaskDetail.text.toString(),
+                        binding.spinnerStateTaskDetail.selectedItemPosition.toString()
+                    )
+                }
             }
         }
+    }
+
+    private fun validateFields(vararg edittext: EditText): Boolean {
+        val allOk = !(edittext.any { it.text.isNullOrBlank() })
+
+        if (!allOk) {
+            AlertDialog.Builder(requireContext(), R.style.AlertDialogStyle)
+                .setTitle(getString(R.string.task_detail_dialog_error_title))
+                .setMessage(R.string.task_detail_dialog_error_message)
+                .setPositiveButton(getString(R.string.filters_task_dialog_ok_button)) { dialog, _ -> dialog.dismiss() }
+                .show()
+        }
+
+        return allOk
     }
 
     private fun showDatePickerDialog(editText: EditText) {
@@ -88,7 +109,8 @@ class TaskDetailFragment : Fragment() {
         val day = calendar.get(Calendar.DAY_OF_MONTH)
 
         val datePickerDialog =
-            DatePickerDialog(requireContext(),
+            DatePickerDialog(
+                requireContext(),
                 { _, selectedYear, selectedMonth, selectedDay ->
                     val selectedDate = Calendar.getInstance()
                     selectedDate.set(selectedYear, selectedMonth, selectedDay)
@@ -103,15 +125,15 @@ class TaskDetailFragment : Fragment() {
     }
 
     private fun initObservables() {
-        taskViewModel.saveOkLiveData.observe(viewLifecycleOwner){
+        taskViewModel.saveOkLiveData.observe(viewLifecycleOwner) {
             if (it == true) {
                 taskViewModel.resetViewModel()
                 findNavController().popBackStack()
             }
         }
 
-        taskViewModel.taskLiveData.observe(viewLifecycleOwner){
-            if (taskId.isNotEmpty()){
+        taskViewModel.taskLiveData.observe(viewLifecycleOwner) {
+            if (taskId.isNotEmpty()) {
                 fillTaskEdit(it)
             }
         }
@@ -121,7 +143,7 @@ class TaskDetailFragment : Fragment() {
         }
     }
 
-    private fun fillTaskEdit(task: Task){
+    private fun fillTaskEdit(task: Task) {
         binding.editTitleTaskDetail.setText(task.title)
         binding.editDescriptionTaskDetail.setText(task.description)
         binding.editDateTaskDetail.setText(task.date)

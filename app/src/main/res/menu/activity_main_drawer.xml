@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
     <group android:checkableBehavior="single">
@@ -11,5 +12,11 @@
             android:id="@+id/nav_rickmorty"
             android:icon="@drawable/ic_menu_rickmorty"
             android:title="@string/menu_rickmorty" />
+
+        <item
+            android:id="@+id/nav_dark_mode"
+            android:icon="@drawable/ic_menu_darkmode"
+            android:title="@string/menu_darkMode"
+            app:actionLayout="@layout/switch_item" />
     </group>
 </menu>

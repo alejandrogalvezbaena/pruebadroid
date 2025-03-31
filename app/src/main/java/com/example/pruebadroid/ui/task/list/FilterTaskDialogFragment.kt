@@ -9,7 +9,10 @@ import com.example.pruebadroid.R
 import com.example.pruebadroid.data.model.Task
 import com.example.pruebadroid.databinding.FragmentFiltersTaskDialogBinding
 
-class FilterTaskDialogFragment(private val selectedFilter: String, private val onApplyFilter: (String) -> Unit) : DialogFragment() {
+class FilterTaskDialogFragment(
+    private val selectedFilter: String,
+    private val onApplyFilter: (String) -> Unit
+) : DialogFragment() {
 
     private var _binding: FragmentFiltersTaskDialogBinding? = null
     private val binding get() = _binding!!
@@ -17,13 +20,13 @@ class FilterTaskDialogFragment(private val selectedFilter: String, private val o
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         _binding = FragmentFiltersTaskDialogBinding.inflate(LayoutInflater.from(requireContext()))
 
-        when(selectedFilter){
+        when (selectedFilter) {
             Task.STATE_PENDING -> binding.radioBtnPendingFiltersTaskDialog.isChecked = true
             Task.STATE_COMPLETED -> binding.radioBtnCompletedFiltersTaskDialog.isChecked = true
             else -> binding.radioBtnAllFiltersTaskDialog.isChecked = true
         }
 
-        val dialog = AlertDialog.Builder(requireContext())
+        val dialog = AlertDialog.Builder(requireContext(), R.style.AlertDialogStyle)
             .setTitle(getString(R.string.filters_task_dialog_title))
             .setView(binding.root)
             .setPositiveButton(getString(R.string.filters_task_dialog_ok_button)) { _, _ ->

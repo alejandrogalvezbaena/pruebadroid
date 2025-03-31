@@ -2,9 +2,43 @@
 <resources>
     <string name="app_name">PRUEBADROID</string>
     <string name="nav_header_title">PRUEBADROID</string>
-    <string name="nav_header_subtitle">Aplicación de gestion de tareas y Rick Morty</string>
-    <string name="action_menu_favorites">Ajustes</string>
-
+    <string name="nav_header_subtitle">Aplicacion de tareas y Rick Morty</string>
+    <string name="action_menu_favorites">Favoritos</string>
+    <string name="action_menu_add_new_task">Añadir nueva tarea</string>
+    <string name="action_menu_filter_task">Filtros</string>
     <string name="menu_task">Tareas</string>
+    <string name="label_task_list">Lista de tareas</string>
+    <string name="label_task_detail">Detalle de tarea</string>
+    <string name="label_task_filter">Filtros</string>
     <string name="menu_rickmorty">Rick Morty</string>
+    <string name="menu_darkMode">Modo oscuro</string>
+    <string name="label_rickmorty">Rick Morty</string>
+    <string name="label_rickmorty_favorites">Favoritos Rick Morty</string>
+    <string name="task_detail_title_hint">Titulo</string>
+    <string name="task_detail_description_hint">Descripcion</string>
+    <string name="task_detail_date_hint">Fecha</string>
+    <string name="task_detail_state_hint">Estado</string>
+    <string name="task_detail_save_button">Guardar</string>
+    <string name="task_detail_state_completed">ESTADO: COMPLETADA</string>
+    <string name="task_detail_state_pending">ESTADO: PENDIENTE</string>
+    <string name="context_menu_rickmorty_favorite">Marcar como favorito</string>
+    <string name="context_menu_rickmorty_no_favorite">Desmarcar como favorito</string>
+    <string name="context_menu_task_completed">Marcar como completada</string>
+    <string name="context_menu_task_deleted">Eliminar</string>
+    <string name="rickmorty_list_info_page">Pagina %s de %s</string>
+    <string name="rickmorty_list_prev_button">Previo</string>
+    <string name="rickmorty_list_next_button">Siguiente</string>
+    <string name="rickmorty_list_nodata_text">No se puede acceder a los datos en linea. Solo puedes ver la lista de favoritos guardada.</string>
+    <string name="rickmorty_favorite_list_nodata_text">Todavia no hay favoritos</string>
+    <string name="rickmorty_list_nodata_button">Favoritos</string>
+    <string name="task_list_nodata_text">La lista esta vacia. Solo puedes añadir una tarea nueva.</string>
+    <string name="task_list_nodata_button">Añadir nueva tarea</string>
+    <string name="filters_task_dialog_all_radiobtn">Todas</string>
+    <string name="filters_task_dialog_pending_radiobtn">Pendientes</string>
+    <string name="filters_task_dialog_completed_radiobtn">Completadas</string>
+    <string name="filters_task_dialog_title">Selecciona Filtro</string>
+    <string name="filters_task_dialog_cancel_button">Cancelar</string>
+    <string name="filters_task_dialog_ok_button">OK</string>
+    <string name="task_detail_dialog_error_title">Aviso</string>
+    <string name="task_detail_dialog_error_message">Todos los campos deben ser rellenados para continuar</string>
 </resources>

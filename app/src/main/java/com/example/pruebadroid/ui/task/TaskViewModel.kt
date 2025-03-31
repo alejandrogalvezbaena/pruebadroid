@@ -30,13 +30,13 @@ class TaskViewModel(application: Application) : AndroidViewModel(application) {
         taskListOriginal = SharedPreferencesUtils.loadTaskList(getApplication())
         when (filterID) {
             Task.STATE_PENDING -> {
-                val taskListPending: ArrayList<Task> =
+                val taskListPending =
                     ArrayList(taskListOriginal.filter { it.state == Task.STATE_PENDING })
                 _filterTaskList.postValue(taskListPending)
             }
 
             Task.STATE_COMPLETED -> {
-                val taskListCompleted: ArrayList<Task> =
+                val taskListCompleted =
                     ArrayList(taskListOriginal.filter { it.state == Task.STATE_COMPLETED })
                 _filterTaskList.postValue(taskListCompleted)
             }
@@ -55,7 +55,7 @@ class TaskViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun createTask(title: String, description: String, date: String, state: String) {
-        val taskListNew: ArrayList<Task> = taskListOriginal
+        val taskListNew = ArrayList(taskListOriginal)
         val idNew = if (taskListNew.isEmpty()) 0 else ((taskListNew[taskListNew.size - 1].id + 1))
         taskListNew.add(Task(idNew.toString(), title, description, date, state))
 
@@ -64,7 +64,7 @@ class TaskViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun editTask(id: String, title: String, description: String, date: String, state: String) {
-        val taskListNew = taskListOriginal
+        val taskListNew = ArrayList(taskListOriginal)
         val task = taskListNew.find { it.id == id }
         task?.title = title
         task?.description = description
@@ -75,20 +75,20 @@ class TaskViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun markAsCompleted(id: String) {
-        val taskListNew = taskListOriginal
+        val taskListNew = ArrayList(taskListOriginal)
         val task = taskListNew.find { it.id == id }
         task?.state = Task.STATE_COMPLETED
         applyChanges(taskListNew)
     }
 
     fun deleteTask(id: String) {
-        val taskListNew = taskListOriginal
+        val taskListNew = ArrayList(taskListOriginal)
         val task = taskListNew.find { it.id == id }
         taskListNew.remove(task)
         applyChanges(taskListNew)
     }
 
     fun resetViewModel() {
-        _saveOK.value = false
+        _saveOK.postValue(false)
     }
 }

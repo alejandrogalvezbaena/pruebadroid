@@ -3,6 +3,7 @@ package com.example.pruebadroid.utils
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.core.content.edit
 import com.example.pruebadroid.data.model.Character
 import com.example.pruebadroid.data.model.Task
 import com.google.gson.Gson
@@ -27,10 +28,10 @@ object SharedPreferencesUtils {
 
     fun saveTaskList(application: Application, taskList: ArrayList<Task>) {
         val sharedPreferences = getTaskPreferences(application)
-        val editor = sharedPreferences.edit()
-        val json = Gson().toJson(taskList)
-        editor.putString(TASK_PREFERENCES_LIST, json)
-        editor.apply()
+        sharedPreferences.edit {
+            val json = Gson().toJson(taskList)
+            putString(TASK_PREFERENCES_LIST, json)
+        }
     }
 
     private fun getRickMortyPreferences(application: Application): SharedPreferences {
@@ -46,9 +47,9 @@ object SharedPreferencesUtils {
 
     fun saveRickMortyList(application: Application, characterList: ArrayList<Character>) {
         val sharedPreferences = getRickMortyPreferences(application)
-        val editor = sharedPreferences.edit()
-        val json = Gson().toJson(characterList)
-        editor.putString(RICKMORTY_PREFERENCES_LIST, json)
-        editor.apply()
+        sharedPreferences.edit {
+            val json = Gson().toJson(characterList)
+            putString(RICKMORTY_PREFERENCES_LIST, json)
+        }
     }
 }

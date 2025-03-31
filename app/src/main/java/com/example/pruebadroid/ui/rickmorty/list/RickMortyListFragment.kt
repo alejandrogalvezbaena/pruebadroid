@@ -44,9 +44,11 @@ class RickMortyListFragment : Fragment(), RickMortyListAdapter.OnRickMortyListen
         initListeners()
         initAdapter()
         initObservables()
+
+        rickMortyViewModel.loadCharacterList(1)
     }
 
-    private fun initMenu(){
+    private fun initMenu() {
         requireActivity().addMenuProvider(object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
                 menuInflater.inflate(R.menu.menu_rickmorty_favorite, menu)
@@ -58,6 +60,7 @@ class RickMortyListFragment : Fragment(), RickMortyListAdapter.OnRickMortyListen
                         findNavController().navigate(R.id.nav_rickmorty_favorites)
                         true
                     }
+
                     else -> false
                 }
             }
@@ -87,7 +90,7 @@ class RickMortyListFragment : Fragment(), RickMortyListAdapter.OnRickMortyListen
         rickMortyViewModel.characterListLiveData.observe(viewLifecycleOwner) {
             if (it.isNullOrEmpty()) {
                 binding.constraintNoDataRickMortyList.visibility = View.VISIBLE
-            } else{
+            } else {
                 rickMortyAdapter.updateDataList(it, rickMortyViewModel.characterFavoriteIDList)
                 if (isFromMarkAsFavorite) isFromMarkAsFavorite = false
                 else binding.recyclerRickMortyList.scrollToPosition(0)
@@ -96,28 +99,25 @@ class RickMortyListFragment : Fragment(), RickMortyListAdapter.OnRickMortyListen
         }
 
         rickMortyViewModel.pageInfoLiveData.observe(viewLifecycleOwner) {
-            binding.textInfoPageRickMortyList.text =
-                getString(R.string.rickmorty_list_info_page, it.first, it.second)
-            when (it.first) {
-                "1" -> setButtonState(false, binding.btnPreviousRickMortyList)
-                it.second -> setButtonState(false, binding.btnNextRickMortyList)
-                else -> setButtonState(true, binding.btnPreviousRickMortyList, binding.btnNextRickMortyList)
+            it?.let {
+                binding.textInfoPageRickMortyList.text =
+                    getString(R.string.rickmorty_list_info_page, it.first, it.second)
+                when (it.first) {
+                    "1" -> setButtonState(false, binding.btnPreviousRickMortyList)
+                    it.second -> setButtonState(false, binding.btnNextRickMortyList)
+                    else -> setButtonState(
+                        true,
+                        binding.btnPreviousRickMortyList,
+                        binding.btnNextRickMortyList
+                    )
+                }
             }
         }
-
-        rickMortyViewModel.loadCharacterList(1)
     }
 
     private fun setButtonState(state: Boolean, vararg buttons: Button) {
         buttons.forEach { button ->
             button.isEnabled = state
-            if (state){
-                context?.let { ContextCompat.getColor(it, R.color.purple_500) }
-                    ?.let { button.setBackgroundColor(it) }
-            } else{
-                context?.let { ContextCompat.getColor(it, R.color.disabled_button) }
-                    ?.let { button.setBackgroundColor(it) }
-            }
         }
     }
 
@@ -133,7 +133,7 @@ class RickMortyListFragment : Fragment(), RickMortyListAdapter.OnRickMortyListen
 
     override fun onDestroyView() {
         super.onDestroyView()
-        rickMortyViewModel.resetCharacterList()
+        rickMortyViewModel.resetViewModel()
         _binding = null
     }
 }
